@@ -1,0 +1,35 @@
+appId: io.github.mightyowl4.gts-dashboard
+productName: GTS Dashboard
+copyright: Copyright (C) 2026 MightyOwl4
+
+directories:
+    buildResources: build
+    output: release
+
+files:
+    - out/**/*
+    - package.json
+    - "!**/{.idea,.git,.github,.specify,.claude,docs,specs,tests}"
+    - "!**/*.{ts,tsx,map}"
+    - "!**/{tsconfig*.json,electron.vite.config.*,vitest.config.*,eslint.config.*}"
+
+asar: true
+asarUnpack:
+    - "resources/**"
+
+win:
+    target:
+        - target: nsis
+          arch:
+              - x64
+    artifactName: ${productName}-${version}-${arch}.${ext}
+
+nsis:
+    oneClick: false
+    perMachine: false
+    allowToChangeInstallationDirectory: true
+    allowElevation: true
+    deleteAppDataOnUninstall: false
+    runAfterFinish: true
+
+publish: null

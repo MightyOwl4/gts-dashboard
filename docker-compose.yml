@@ -1,0 +1,68 @@
+services:
+    dev:
+        build:
+            context: .
+            dockerfile: Dockerfile.dev
+        container_name: gts-dashboard-dev
+        ports:
+            - "5173:5173"
+        volumes:
+            - ./:/app
+            - node_modules:/app/node_modules
+        environment:
+            - CHOKIDAR_USEPOLLING=true
+            - WATCHPACK_POLLING=true
+        command: npm run dev:renderer
+
+    install:
+        build:
+            context: .
+            dockerfile: Dockerfile.dev
+        volumes:
+            - ./:/app
+            - node_modules:/app/node_modules
+        command: npm install
+        profiles: ["tools"]
+
+    lint:
+        build:
+            context: .
+            dockerfile: Dockerfile.dev
+        volumes:
+            - ./:/app
+            - node_modules:/app/node_modules
+        command: npm run lint
+        profiles: ["tools"]
+
+    typecheck:
+        build:
+            context: .
+            dockerfile: Dockerfile.dev
+        volumes:
+            - ./:/app
+            - node_modules:/app/node_modules
+        command: npm run typecheck
+        profiles: ["tools"]
+
+    test:
+        build:
+            context: .
+            dockerfile: Dockerfile.dev
+        volumes:
+            - ./:/app
+            - node_modules:/app/node_modules
+        command: npm test
+        profiles: ["tools"]
+
+    bundle:
+        build:
+            context: .
+            dockerfile: Dockerfile.dev
+        volumes:
+            - ./:/app
+            - node_modules:/app/node_modules
+        command: npm run build:bundle
+        profiles: ["tools"]
+
+volumes:
+    node_modules:

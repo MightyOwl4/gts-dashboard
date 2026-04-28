@@ -1,0 +1,14 @@
+node_modules
+out
+release
+dist
+.git
+.idea
+.vscode
+.specify
+.claude
+specs
+docs
+*.log
+.DS_Store
+Thumbs.db
